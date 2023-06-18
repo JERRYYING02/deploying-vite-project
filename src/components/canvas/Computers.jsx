@@ -22,7 +22,7 @@ const Computers = ({ isMobile }) => {
       <primitive
         object={computer.scene}
         scale={isMobile ? 0.7 : 0.7}
-        position={isMobile ? [0, -3, -2.2] : [0, -2.25, -1.5]}
+        position={isMobile ? [0, -3, 0] : [0, -2.25, -1.5]}
         rotation={[-0.01, -0.1, -0.1]}
       />
     </mesh>
@@ -58,7 +58,7 @@ const ComputersCanvas = () => {
       frameloop='demand'
       shadows
       dpr={[1, 2]}
-      camera={{ position: [25, 1, -5], fov: 45 }}
+      camera={{ position: [25, 1, -5], fov: 40 }}
       gl={{ preserveDrawingBuffer: true }}
     >
       <Suspense fallback={<CanvasLoader />}>
