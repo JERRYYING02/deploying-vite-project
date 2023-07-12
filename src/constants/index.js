@@ -179,7 +179,7 @@ const testimonials = [
   },
   {
     testimonial:
-      "He has an artistic sense and create beautiful designs for clients",
+      "He has an artistic sense to create beautiful designs for clients",
     name: "Alicia",
     designation: "Marketing Executive",
     company: "Crescendo International College",
