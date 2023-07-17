@@ -40,7 +40,7 @@ const About = () => {
     <>
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview.</h2>
+        <h2 className={styles.sectionHeadText}>Not just an ordinary coder.</h2>
       </motion.div>
 
       <motion.p
@@ -58,6 +58,18 @@ const About = () => {
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
       </div>
+
+      <div className='flex flex-col items-center mt-10 ml-4'>
+          <a href='/src/assets/yingjiecv.pdf' download>
+          <button class="bg-green-300 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+            <span>My Resume</span>
+          </button>
+          </a>
+          <p className='text-white mt-2 text-sm'>Click to download resume</p>
+        </div>
+
+    
     </>
   );
 };

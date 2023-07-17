@@ -50,7 +50,7 @@ const services = [
     icon: mobile,
   },
   {
-    title: "Backend Developer",
+    title: "Front & Backend  Developer",
     icon: backend,
   },
   {
@@ -116,7 +116,7 @@ const technologies = [
 
 const experiences = [
   {
-    title: "Backend Sales Manager",
+    title: "Service & Sales Manager",
     company_name: "Yuan Yuan Sheng",
     icon: starbucks,
     iconBg: "#383E56",
@@ -128,7 +128,7 @@ const experiences = [
     ],
   },
   {
-    title: "IT Assistant",
+    title: "Marketing & IT Assistant",
     company_name: "Crescendo International College",
     icon: tesla,
     iconBg: "#E6DEDD",
@@ -173,7 +173,7 @@ const testimonials = [
     testimonial:
       "Jerry was hardworking and has the correct attitude towards his work",
     name: "Aaron",
-    designation: "Manager",
+    designation: "Head Manager",
     company: "Vivo Sdn Bhd",
     image: "https://randomuser.me/api/portraits/women/4.jpg",
   },
@@ -217,6 +217,7 @@ const projects = [
     ],
     image: carrent,
     source_code_link: "https://github.com/",
+    eye_link:"https://google.com/",
   },
   {
     name: "Pixel mini-game ",
