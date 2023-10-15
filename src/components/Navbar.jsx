@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 import { styles } from "../styles";
 import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
+import { logo, menu, close, linkedinIcon } from "../assets"; // Import your LinkedIn icon
+import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -24,6 +26,8 @@ const Navbar = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const isMobile = window.innerWidth <= 640; // Set your desired breakpoint for mobile
 
   return (
     <nav
@@ -49,7 +53,15 @@ const Navbar = () => {
           </p>
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
+        {isMobile && ( // Conditionally render LinkedIn icon on mobile
+          <div className='flex items-center gap-2'>
+            <a href="https://www.linkedin.com/in/jerry-chng001/">
+            <AiFillLinkedin />
+            </a>
+          </div>
+        )}
+
+        <ul className={`list-none ${isMobile ? 'hidden' : 'sm:flex'} flex-row gap-10`}>
           {navLinks.map((nav) => (
             <li
               key={nav.id}

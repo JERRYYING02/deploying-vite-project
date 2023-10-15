@@ -30,7 +30,19 @@ import tesla from "./company/tesla.png";
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
+import gptclonewebsite from "./gptclonewebsite.png";
+import visualizer from "./visualizer.png";
+import myblog from "./myblog.png";
+import resumeIcon from "./resume.jpg";
+import githubIcon from "./githubicon.png";
+import linkedinIcon from "./linkedin.png";
 
+import malaysiandeli from "./malaysiandeli.png"
+import plantdcs from "./plantdcs.png"
+import socialhut from "./socialhut.jpeg"
+import portfoliowebsite from "./portfoliowebsite.png"
+import cryptobot from "./cryptobot.png"
+import upcoming from "./upcoming.png"
 export {
   logo,
   backend,
@@ -61,4 +73,17 @@ export {
   carrent,
   jobit,
   tripguide,
+  gptclonewebsite,
+  visualizer,
+  myblog,
+  resumeIcon,
+  githubIcon,
+  linkedinIcon,
+  malaysiandeli,
+  plantdcs,
+  socialhut,
+  portfoliowebsite,
+  cryptobot,
+  upcoming
+  
 };

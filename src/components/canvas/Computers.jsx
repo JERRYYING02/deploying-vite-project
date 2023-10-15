@@ -1,65 +1,74 @@
 import React, { Suspense, useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-
 import CanvasLoader from "../Loader";
 
-const Computers = ({ isMobile }) => {
+const Computers = ({ isMobile, isRotating }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
+  // Add Y-axis rotation and stop it after a certain time
+  const rotationSpeed = 4; // Adjust the rotation speed
+  const stopRotationTime = 4; // Time in seconds to stop rotation
+
+  useFrame(({ clock }) => {
+    // Check if enough time has passed to stop the rotation and whether it should still rotate
+    if (clock.elapsedTime < stopRotationTime && isRotating) {
+      // Continue rotating
+      computer.scene.rotation.y += rotationSpeed * -0.0005;
+    }
+  });
+
+  // Calculate the position based on isMobile
+  const position = isMobile ? [0, -3.5, 0] : [0, -3, -3.5];
+
   return (
-    <mesh>
-      <hemisphereLight intensity={0.25} groundColor='black' />
+    <group>
+      {/* Lights */}
+      <hemisphereLight intensity={0.7} />
       <spotLight
         position={[-20, 5, 10]}
-        angle={0.12}
+        angle={0.3}
         penumbra={1}
         intensity={1}
         castShadow
-        shadow-mapSize={0}
       />
-      <pointLight intensity={1} />
+      <pointLight position={[10, 10, 10]} intensity={1} />
+
+      {/* Computer Model */}
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.6 : 0.8}
-        position={isMobile ? [0, -3, 0] : [0, -2.25, -1.5]}
-        rotation={[-0.01, -0.1, -0.1]}
+        scale={isMobile ? 0.55 : 0.9}
+        position={position}
+        rotation={[-0.005, -0.05, -0.05]}
+        castShadow
       />
-    </mesh>
+    </group>
   );
 };
 
-const ComputersCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false);
+const ComputersCanvas = ({ isMobile }) => {
+  const [isRotating, setIsRotating] = useState(true); // State to control rotation
 
   useEffect(() => {
-    // Add a listener for changes to the screen size
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    // Stop the rotation after the specified time
+    const timer = setTimeout(() => {
+      setIsRotating(false);
+    }, 4000); // Stop after 4 seconds
 
-    // Set the initial value of the `isMobile` state variable
-    setIsMobile(mediaQuery.matches);
-
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // Remove the listener when the component is unmounted
+    // Clean up the timer when the component unmounts
     return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+      clearTimeout(timer);
     };
   }, []);
 
   return (
     <Canvas
-      frameloop='demand'
+      frameloop="demand"
       shadows
-      dpr={[0.1,1]}
-      camera={{ position: [25, 1, -5], fov: 40 }}
+      dpr={[window.devicePixelRatio, 2]}
+      camera={{ position: [15, 30, -5], fov: 40 }}
       gl={{ preserveDrawingBuffer: true }}
+      style={{ width: "100%", height: "110%" }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
@@ -67,7 +76,7 @@ const ComputersCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Computers isMobile={isMobile} />
+        <Computers isMobile={isMobile} isRotating={isRotating} />
       </Suspense>
 
       <Preload all />
